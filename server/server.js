@@ -12,7 +12,13 @@ const handleEANlookup = (res, EAN) => {
 
 const requestListener = (req, res) => {
   if (req.url.startsWith("/lookupEAN=")) {
-    handleEANlookup(res, req.url.substr(req.url.indexOf('='), 12));
+    const EAN = req.url.substr(req.url.indexOf('=') + 1, 12);
+    console.log(EAN);
+    if (EAN.length != 12) {
+      console.log("ERROR: Invalid EAN");
+      res.end('ERROR, Invalid EAN');
+    }
+    handleEANlookup(res, EAN);
   } else {
     res.end('Error, Not Found\n');
   } 
