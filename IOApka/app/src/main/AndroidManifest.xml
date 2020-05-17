@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ioapka">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,6 +20,13 @@
         </activity>
         <activity android:name=".ServerCommunication" />
         <activity android:name=".RecipesMenu" />
+        <activity
+            android:name=".SingleScan"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
 
         <meta-data
             android:name="preloaded_fonts"

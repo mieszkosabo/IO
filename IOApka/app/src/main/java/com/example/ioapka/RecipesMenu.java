@@ -17,7 +17,7 @@ public class RecipesMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
 
-        backToMain = findViewById(R.id.imageButton2);
+        backToMain = findViewById(R.id.backToMainButton);
         backToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,6 +30,4 @@ public class RecipesMenu extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-
 }

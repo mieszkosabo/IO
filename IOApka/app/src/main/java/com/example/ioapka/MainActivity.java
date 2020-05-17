@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mTextViewResult; // pole tekstowe do testowania http responsów
     private Button fridgeButton;
     private Button recipesButton;
+    private Button scanButon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         fridgeButton = findViewById(R.id.fridgeButton);
         recipesButton = findViewById(R.id.recipesButton);
+        scanButon = findViewById(R.id.scanButton);
 
         fridgeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,12 +38,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 openFridge();
             }
         });
+
         recipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openRecipes();
             }
         });
+
+        scanButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSingleScan();
+            }
+        });
+    }
+
+    public void openSingleScan() {
+        Intent intent = new Intent(this, SingleScan.class);
+        startActivity(intent);
     }
 
     public void openRecipes() {
