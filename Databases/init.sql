@@ -229,8 +229,7 @@ DELIMITER ;
 
                                       /********LOADY*******/
 
-
-LOAD DATA LOCAL INFILE 'csv/categories.csv'
+LOAD DATA LOCAL INFILE 'csv/category.csv'
     INTO TABLE CATEGORY
     FIELDS TERMINATED BY ';'
     LINES TERMINATED BY '\n'
