@@ -4,93 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF0AE">
+    android:layout_weight="1"
+    android:background="#FFF0AE"
+    android:visibility="visible"
+    tools:visibility="visible">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarAdding"
         android:layout_width="0dp"
         android:layout_height="158dp"
-        android:background="#FFF0AE"
+        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:logo="@drawable/logo_transparent"
-        tools:visibility="visible" />
-
-    <ImageButton
-        android:id="@+id/backToMainButton"
-        android:layout_width="70dp"
-        android:layout_height="56dp"
-        android:background="@null"
-        android:contentDescription="@string/fa_backward_solid"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
-        app:srcCompat="@drawable/button_next" />
+        app:logo="@drawable/logo_transparent" />
 
     <Button
-        android:id="@+id/MyRecipes"
+        android:id="@+id/MakePhoto"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="130dp"
         android:layout_marginEnd="80dp"
         android:layout_marginRight="80dp"
         android:background="@drawable/button_background2"
         android:fontFamily="@font/roboto_medium"
         android:shadowColor="#FFFFFF"
-        android:text="Moje Przepisy"
+        android:text="Zrób zdjęcie"
         android:textColor="#FFF6CE"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAdding" />
 
     <Button
-        android:id="@+id/SeekRecipes"
+        android:id="@+id/button2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="80dp"
         android:layout_marginRight="80dp"
         android:background="@drawable/button_background2"
         android:fontFamily="@font/roboto_medium"
         android:shadowColor="#FFFFFF"
-        android:text="Wyszukaj Przepis"
+        android:text="Dodaj zdjęcie z galerii"
         android:textColor="#FFF6CE"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MyRecipes" />
+        app:layout_constraintTop_toBottomOf="@+id/MakePhoto" />
 
     <Button
-        android:id="@+id/AddRecipe"
-        android:layout_width="0dp"
+        android:id="@+id/Next"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:background="@drawable/button_background2"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/button_background"
         android:fontFamily="@font/roboto_medium"
         android:shadowColor="#FFFFFF"
-        android:text="Dodaj przepis"
+        android:text="Następna"
         android:textColor="#FFF6CE"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SeekRecipes"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
+    <Button
+        android:id="@+id/Prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/roboto_medium"
+        android:shadowColor="#FFFFFF"
+        android:text="Poprzednia"
+        android:textColor="#FFF6CE"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
