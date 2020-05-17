@@ -1,9 +1,11 @@
 const http = require('http');
 const mysql = require('mysql');
 
-// WPISZ TU SWOJE DANE DO MYSQL
-const usr = "root";
-const pw = "Root12345@";
+
+const fs = require("fs");
+const textByLine = fs.readFileSync('login.txt').toString().split("\n");
+const usr = textByLine[0];
+const pw = textByLine[1];
 
 const handleEANlookup = (res, EAN) => {
 
