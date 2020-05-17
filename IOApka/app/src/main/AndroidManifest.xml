@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ServerCommunication" />
+        <activity android:name=".RecipesMenu" />
 
         <meta-data
             android:name="preloaded_fonts"
