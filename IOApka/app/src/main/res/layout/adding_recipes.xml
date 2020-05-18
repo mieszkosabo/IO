@@ -94,9 +94,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/button_background2"
         android:text="Śniadanie"
+        android:textColor="#FFF6CE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarAdding" />
 
@@ -106,9 +107,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:background="@drawable/button_background2"
         android:text="II Śniadanie"
+        android:textColor="#FFF6CE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Breakfast" />
 
@@ -118,9 +120,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:background="@drawable/button_background2"
         android:text="Obiad"
+        android:textColor="#FFF6CE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Breakfast2" />
 
@@ -130,9 +133,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:background="@drawable/button_background2"
         android:text="Podwieczorek"
+        android:textColor="#FFF6CE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Dinner" />
 
@@ -142,9 +146,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="10dp"
-        android:background="#FFFFFF"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/button_background2"
         android:text="Kolacja"
+        android:textColor="#FFF6CE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UnderSupper" />
 
@@ -154,8 +159,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/button_background2"
         android:text="Przekąska"
+        android:textColor="#FFF6CE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Supper" />
 

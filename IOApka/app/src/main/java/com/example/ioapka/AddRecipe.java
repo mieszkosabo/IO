@@ -6,6 +6,12 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
 public class AddRecipe extends AppCompatActivity {
 
     private Button Next;
@@ -38,6 +44,29 @@ public class AddRecipe extends AppCompatActivity {
             Prev.setVisibility(View.VISIBLE);
             AddPhoto.setVisibility(View.INVISIBLE);
             MakePhoto.setVisibility((View.INVISIBLE));
+
+            Callback callback = new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        final String myResponse = response.body().string();
+
+                        AddRecipe.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Prev.setText(myResponse);
+                            }
+                        });
+                    }
+                }
+            };
+            ServerCommunication sc = new ServerCommunication();
+            sc.lookupCategory(callback);
         }
 
     }
