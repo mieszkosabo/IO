@@ -7,6 +7,7 @@
     android:layout_weight="1"
     android:background="#FFF0AE"
     android:visibility="visible"
+    android:id="@+id/MyLayout"
     tools:visibility="visible">
 
     <androidx.appcompat.widget.Toolbar
@@ -165,5 +166,13 @@
         android:textColor="#FFF6CE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Supper" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="206dp"
+        android:layout_height="101dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAdding" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

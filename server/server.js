@@ -36,7 +36,7 @@ const handleCategoryLookup = (res) => {
         console.log("query error");
       } else {
         res.writeHead(200, {'Content-Type': 'application/json'});
-        let Categories = [];
+        let Categories = []
         for (let i = 0; i < rows.length; ++i) {
           Categories[i] = rows[i].category;
         }
