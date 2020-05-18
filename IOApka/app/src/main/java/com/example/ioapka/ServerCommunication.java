@@ -15,7 +15,7 @@ public class ServerCommunication {
 
     public void lookupEAN(String EAN, Callback cb) {
         System.out.println("jestem");
-        String url = "http://10.0.2.2:8080/lookupEAN=" + EAN;
+        String url = "https://331bf23c.ngrok.io/lookupEAN=" + EAN;
         Request request = new Request.Builder()
                 .url(url)
                 .build();
