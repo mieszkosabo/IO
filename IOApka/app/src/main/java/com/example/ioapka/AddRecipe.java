@@ -4,13 +4,18 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,8 +33,15 @@ public class AddRecipe extends AppCompatActivity {
     private Button AddPhoto;
     private Button MakePhoto;
     private Button Prev;
+    private TextInputEditText PreparationT;
+    private TextInputEditText CookingT;
+    private TextInputEditText Origin;
+    private TextInputEditText Serves;
+    private TextView DiffLabel;
+    private Spinner Difficulty;
     private Integer counter;
     private ArrayList<String> Tags;
+    private ArrayList<CheckBox> cbs;
     public ConstraintLayout cl;
 
     @Override
@@ -42,6 +54,21 @@ public class AddRecipe extends AppCompatActivity {
         MakePhoto = findViewById(R.id.MakePhoto);
         Next = findViewById(R.id.Next);
         Prev = findViewById(R.id.Prev);
+
+        DiffLabel = findViewById(R.id.DiffLabel);
+        Difficulty = findViewById(R.id.Difficulty);
+
+        Origin = findViewById(R.id.Origin);
+        Serves = findViewById(R.id.Serves);
+
+        PreparationT = findViewById(R.id.PreparationT);
+        CookingT = findViewById(R.id.CookingT);
+
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(AddRecipe.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.diffTable));
+
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Difficulty.setAdapter(myAdapter);
 
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +98,7 @@ public class AddRecipe extends AppCompatActivity {
                         String myResponse = response.body().string();
                         myResponse = myResponse.substring(1, myResponse.length() - 1);
                         Tags = new ArrayList<String>(Arrays.asList(myResponse.split(",")));
-                        final ArrayList<CheckBox> cbs = new ArrayList<CheckBox>();
+                        cbs = new ArrayList<CheckBox>();
                         AddRecipe.this.runOnUiThread(new Runnable() {
                             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
                             @Override
@@ -146,6 +173,17 @@ public class AddRecipe extends AppCompatActivity {
             ServerCommunication sc = new ServerCommunication();
             sc.lookupCategory(callback);
             counter++;
+        }
+        else if (counter == 1) {
+            for (int i = 0; i < cbs.size(); i++) {
+                cbs.get(i).setVisibility(View.INVISIBLE);
+            }
+            DiffLabel.setVisibility(View.VISIBLE);
+            Difficulty.setVisibility(View.VISIBLE);
+            Origin.setVisibility(View.VISIBLE);
+            Serves.setVisibility(View.VISIBLE);
+            CookingT.setVisibility(View.VISIBLE);
+            PreparationT.setVisibility(View.VISIBLE);
         }
     }
 }
