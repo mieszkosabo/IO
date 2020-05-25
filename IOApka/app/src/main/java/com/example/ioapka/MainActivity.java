@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button fridgeButton;
     private Button recipesButton;
     private Button scanButon;
+    private Button startShoppingButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fridgeButton = findViewById(R.id.fridgeButton);
         recipesButton = findViewById(R.id.recipesButton);
         scanButon = findViewById(R.id.scanButton);
+        startShoppingButton = findViewById(R.id.startShoppingButton);
 
         fridgeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,9 +54,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 openSingleScan();
             }
         });
+
+        startShoppingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMultipleScan();
+            }
+        });
     }
 
-    public void openSingleScan() {
+    private void openSingleScan() {
         Intent intent = new Intent(this, SingleScan.class);
         startActivity(intent);
     }
@@ -92,6 +101,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Potem tworzymy obiekt ServerCommunication i możemy użyć np metody lookupEAN
         ServerCommunication sc = new ServerCommunication();
         sc.lookupEAN("111111111111", myCallback);
+    }
+
+    private void openMultipleScan() {
+        Intent intent = new Intent(this, MultipleScan.class);
+        startActivity(intent);
     }
 
     @Override
