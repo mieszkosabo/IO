@@ -7,6 +7,100 @@ const textByLine = fs.readFileSync('login.txt').toString().split("\n");
 const usr = textByLine[0];
 const pw = textByLine[1];
 
+const handleUnitsLookup = (res) => {
+
+  // Ustalamy połączenie z mysql
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: usr,
+    password: pw,
+    database: "projectdb"
+  });
+
+  // łączymy się z bazą
+  con.connect((err) => {
+    if (err) {
+      console.log("DB ERROR!");
+    } else {
+      console.log("connection established");
+    }
+  });
+
+  const lookupUnitsInDatabase = () => {
+    const CategoryLookupQuery = `SELECT unit FROM UNIT;`;
+
+    // pierwszy arg to kwerenda, drugi to callback
+    // czyli funkcja wywoływana po zfeczowaniu danych
+    con.query(CategoryLookupQuery, (err, rows) => {
+      if (err) {
+        console.log("query error");
+      } else {
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        let Categories = []
+        for (let i = 0; i < rows.length; ++i) {
+          Categories[i] = rows[i].unit;
+        }
+        res.write(JSON.stringify(Categories));
+        res.end();
+      }
+    });
+  };
+
+  lookupUnitsInDatabase();
+
+  con.end((err) => {
+    // The connection is terminated gracefully
+    // Ensures all remaining queries are executed
+    // Then sends a quit packet to the MySQL server.
+  });
+}
+const handleIngredientsLookup = (res) => {
+
+  // Ustalamy połączenie z mysql
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: usr,
+    password: pw,
+    database: "projectdb"
+  });
+
+  // łączymy się z bazą
+  con.connect((err) => {
+    if (err) {
+      console.log("DB ERROR!");
+    } else {
+      console.log("connection established");
+    }
+  });
+
+  const lookupIngredientsInDatabase = () => {
+    const CategoryLookupQuery = `SELECT rawProduct FROM RAW_PRODUCT;`;
+
+    // pierwszy arg to kwerenda, drugi to callback
+    // czyli funkcja wywoływana po zfeczowaniu danych
+    con.query(CategoryLookupQuery, (err, rows) => {
+      if (err) {
+        console.log("query error");
+      } else {
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        let Categories = []
+        for (let i = 0; i < rows.length; ++i) {
+          Categories[i] = rows[i].rawProduct;
+        }
+        res.write(JSON.stringify(Categories));
+        res.end();
+      }
+    });
+  };
+
+  lookupIngredientsInDatabase();
+
+  con.end((err) => {
+    // The connection is terminated gracefully
+    // Ensures all remaining queries are executed
+    // Then sends a quit packet to the MySQL server.
+  });
+}
 const handleCategoryLookup = (res) => {
   
   // Ustalamy połączenie z mysql
@@ -46,7 +140,7 @@ const handleCategoryLookup = (res) => {
     });
   };
 
-  lookupCategoryInDatabase()
+  lookupCategoryInDatabase();
 
   con.end((err) => {
     // The connection is terminated gracefully
@@ -111,7 +205,11 @@ const requestListener = (req, res) => {
     handleEANlookup(res, EAN);
   } else if (req.url.startsWith("/Category")) {
     handleCategoryLookup(res);
-  } 
+  } else if (req.url.startsWith("/Ingredients")) {
+    handleIngredientsLookup(res);
+  } else if (req.url.startsWith("/Units")) {
+    handleUnitsLookup(res);
+  }
   else {
     res.end('Error, Not Found\n');
   } 

@@ -5,9 +5,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -37,12 +39,19 @@ public class AddRecipe extends AppCompatActivity {
     private TextInputEditText CookingT;
     private TextInputEditText Origin;
     private TextInputEditText Serves;
+    private TextInputEditText HowMuch;
+    private AutoCompleteTextView Ingredient;
     private TextView DiffLabel;
     private Spinner Difficulty;
+    private Spinner Unit;
     private Integer counter;
     private ArrayList<String> Tags;
     private ArrayList<CheckBox> cbs;
+    private ArrayList<String> IngredientsAdded;
+    private String[] Units;
+    private ArrayList<Integer> Quantity;
     public ConstraintLayout cl;
+    private TableLayout tb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +72,13 @@ public class AddRecipe extends AppCompatActivity {
 
         PreparationT = findViewById(R.id.PreparationT);
         CookingT = findViewById(R.id.CookingT);
+
+        HowMuch = findViewById(R.id.HowMuch);
+        Ingredient = findViewById(R.id.Ingredient);
+
+        Unit = findViewById(R.id.Unit);
+
+        tb = findViewById(R.id.Ingredients);
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(AddRecipe.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.diffTable));
@@ -178,12 +194,84 @@ public class AddRecipe extends AppCompatActivity {
             for (int i = 0; i < cbs.size(); i++) {
                 cbs.get(i).setVisibility(View.INVISIBLE);
             }
-            DiffLabel.setVisibility(View.VISIBLE);
-            Difficulty.setVisibility(View.VISIBLE);
             Origin.setVisibility(View.VISIBLE);
             Serves.setVisibility(View.VISIBLE);
             CookingT.setVisibility(View.VISIBLE);
             PreparationT.setVisibility(View.VISIBLE);
+            counter++;
+        }
+        else if (counter == 2) {
+            Callback callback = new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        String myResponse = response.body().string();
+                        myResponse = myResponse.substring(1, myResponse.length() - 1);
+                        Units = myResponse.split(",");
+                        AddRecipe.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (int i = 0; i < Units.length; i++) {
+                                    Units[i] = Units[i].substring(1, Units[i].length() - 1);
+                                }
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddRecipe.this, android.R.layout.simple_dropdown_item_1line, Units);
+                                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                Unit.setAdapter(adapter);
+                            }
+                        });
+                    }
+                }
+            };
+            ServerCommunication sc = new ServerCommunication();
+            sc.lookupUnits(callback);
+            Origin.setVisibility(View.INVISIBLE);
+            Serves.setVisibility(View.INVISIBLE);
+            CookingT.setVisibility(View.INVISIBLE);
+            PreparationT.setVisibility(View.INVISIBLE);
+            DiffLabel.setVisibility(View.VISIBLE);
+            Difficulty.setVisibility(View.VISIBLE);
+            counter++;
+        }
+        else if (counter == 3) {
+            Callback callback = new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException{
+                    if (response.isSuccessful()) {
+                        String myResponse = response.body().string();
+                        myResponse = myResponse.substring(1, myResponse.length() - 1);
+                        final String[] ingredients = myResponse.split(",");
+                        AddRecipe.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (int i = 0; i < ingredients.length; i++) {
+                                    ingredients[i] = ingredients[i].substring(1, ingredients[i].length() - 1);
+                                }
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddRecipe.this, android.R.layout.simple_dropdown_item_1line, ingredients);
+                                Ingredient.setThreshold(1);
+                                Ingredient.setAdapter(adapter);
+                                Ingredient.setVisibility(View.VISIBLE);
+                                DiffLabel.setVisibility(View.INVISIBLE);
+                                Difficulty.setVisibility(View.INVISIBLE);
+                                HowMuch.setVisibility(View.VISIBLE);
+                                Unit.setVisibility(View.VISIBLE);
+                                tb.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    }
+                }
+            };
+            ServerCommunication sc = new ServerCommunication();
+            sc.lookupIngredients(callback);
         }
     }
 }

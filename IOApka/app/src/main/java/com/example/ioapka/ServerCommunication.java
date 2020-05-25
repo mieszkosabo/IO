@@ -29,4 +29,18 @@ public class ServerCommunication {
         client.newCall(request).enqueue(cb);
     }
 
+    public void lookupIngredients(Callback cb) {
+        Request request = new Request.Builder()
+                .url("http://10.0.2.2:8080/Ingredients")
+                .build();
+        client.newCall(request).enqueue(cb);
+    }
+
+    public void lookupUnits(Callback cb) {
+        Request request = new Request.Builder()
+                .url("http://10.0.2.2:8080/Units")
+                .build();
+        client.newCall(request).enqueue(cb);
+    }
+
 }
