@@ -13,14 +13,6 @@ CREATE TABLE DISH (
     dish                VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE DISH_CATEGORY (
-    idDish              INT NOT NULL,
-    idCategory          INT NOT NULL,
-
-    FOREIGN KEY (idDish) REFERENCES DISH (idDish),
-    FOREIGN KEY (idCategory) REFERENCES CATEGORY (idCategory)
-);
-
 CREATE TABLE RATE (
     idRecipe            INT NOT NULL PRIMARY KEY,
     one                 INT DEFAULT 0,
@@ -37,20 +29,28 @@ CREATE TABLE RATE (
 
 CREATE TABLE RECIPE (
     idRecipe            INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    idDish              INT NOT NULL,
+    name                VARCHAR(50) NOT NULL,
     preparationTime     INT,
     cookingTime         INT,
     origin              VARCHAR(20),
     serves              INT,
     -- idDifficulty        INT,
     difficulty          INT,
-    content             TEXT NOT NULL,
+    content             TEXT NOT NULL
 
-    FOREIGN KEY (idDish) REFERENCES DISH (idDish)
+#     FOREIGN KEY (idDish) REFERENCES DISH (idDish)
     -- FOREIGN KEY (idDifficulty) REFERENCES DIFFICULTY (idDifficulty)
 );
 
 #ALTER TABLE RECIPE MODIFY content TEXT CHARACTER SET utf8;
+
+CREATE TABLE RECIPE_CATEGORY (
+    idRecipe              INT NOT NULL,
+    idCategory          INT NOT NULL,
+
+    FOREIGN KEY (idRecipe) REFERENCES RECIPE (idRecipe),
+    FOREIGN KEY (idCategory) REFERENCES CATEGORY (idCategory)
+);
 
 CREATE TABLE DIET (
     idDiet              INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
