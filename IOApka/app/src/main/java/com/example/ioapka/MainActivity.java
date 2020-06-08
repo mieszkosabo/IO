@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
         // Potem tworzymy obiekt ServerCommunication i możemy użyć np metody lookupEAN
         ServerCommunication sc = new ServerCommunication();
-        sc.lookupEAN("111111111111", myCallback);
+        sc.lookupEAN("5900820000011", myCallback);
     }
 
     private void openMultipleScan() {
