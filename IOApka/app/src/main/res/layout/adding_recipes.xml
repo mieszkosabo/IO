@@ -226,7 +226,8 @@
         app:layout_constraintStart_toEndOf="@+id/HowMuch"
         app:layout_constraintTop_toBottomOf="@+id/toolbarAdding" />
 
-    <TableLayout
+
+    <ScrollView
         android:id="@+id/Ingredients"
         android:layout_width="0dp"
         android:layout_height="250dp"
@@ -236,11 +237,17 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:background="@drawable/button_background"
-        android:textColor="#FFF6CE"
         android:visibility="invisible"
+        android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarAdding">
+    <TableLayout
+        android:id="@+id/tableIngredients"
+        android:textColor="#FFF6CE"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="true">
 
         <TableRow
             android:layout_width="match_parent"
@@ -254,7 +261,7 @@
                 android:gravity="center"
                 android:text="Składnik"
                 android:textColor="#FFF6CE"
-                android:textSize="20sp"></TextView>
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_height="50dp"
@@ -264,20 +271,61 @@
                 android:gravity="center"
                 android:text="Ilość"
                 android:textColor="#FFF6CE"
-                android:textSize="20sp"></TextView>
+                android:textSize="20sp"/>
+
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </TableLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/Popup"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:visibility="invisible"
+        android:background="@drawable/button_background2"
+        android:gravity="center"
+        android:text="Należy wybrać składnik z listy!"
+        android:textColor="#FFF6CE"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAdding"/>
+
+
+    <Button
+        android:id="@+id/OK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/roboto_medium"
+        android:shadowColor="#FFFFFF"
+        android:text="OK"
+        android:textColor="#FFF6CE"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Popup"/>
+
+    <Button
+        android:id="@+id/AddIngredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/roboto_medium"
+        android:shadowColor="#FFFFFF"
+        android:text="Dodaj"
+        android:textColor="#FFF6CE"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Ingredients" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
