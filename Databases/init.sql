@@ -10,14 +10,19 @@ CREATE TABLE CATEGORY (
 
 CREATE TABLE DISH (
     idDish              INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    dish                VARCHAR(100) NOT NULL,
+    dish                VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE DISH_CATEGORY (
+    idDish              INT NOT NULL,
     idCategory          INT NOT NULL,
 
+    FOREIGN KEY (idDish) REFERENCES DISH (idDish),
     FOREIGN KEY (idCategory) REFERENCES CATEGORY (idCategory)
 );
 
 CREATE TABLE RATE (
-    idRate              INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    idRecipe            INT NOT NULL PRIMARY KEY,
     one                 INT DEFAULT 0,
     two                 INT DEFAULT 0,
     three               INT DEFAULT 0,
@@ -25,10 +30,10 @@ CREATE TABLE RATE (
     five                INT DEFAULT 0
 );
 
-CREATE TABLE DIFFICULTY (
+/*CREATE TABLE DIFFICULTY (
     idDifficulty        INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     difficulty               VARCHAR(20) NOT NULL
-);
+);*/
 
 CREATE TABLE RECIPE (
     idRecipe            INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -37,13 +42,12 @@ CREATE TABLE RECIPE (
     cookingTime         INT,
     origin              VARCHAR(20),
     serves              INT,
-    idDifficulty        INT,
-    idRate              INT NOT NULL,
+    -- idDifficulty        INT,
+    difficulty          INT,
     content             TEXT NOT NULL,
 
-    FOREIGN KEY (idDish) REFERENCES DISH (idDish),
-    FOREIGN KEY (idRate) REFERENCES RATE (idRate),
-    FOREIGN KEY (idDifficulty) REFERENCES DIFFICULTY (idDifficulty)
+    FOREIGN KEY (idDish) REFERENCES DISH (idDish)
+    -- FOREIGN KEY (idDifficulty) REFERENCES DIFFICULTY (idDifficulty)
 );
 
 #ALTER TABLE RECIPE MODIFY content TEXT CHARACTER SET utf8;
@@ -52,6 +56,7 @@ CREATE TABLE DIET (
     idDiet              INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     diet                VARCHAR(20) NOT NULL
 );
+
 /* w 100 gramach */
 CREATE TABLE GOODNESS (
     idGoodness          INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -97,14 +102,14 @@ CREATE TABLE INGREDIENTS (
     FOREIGN KEY (idUnit) REFERENCES UNIT(idUnit)
 );
 
-CREATE TABLE PRODUCT_USE (
+CREATE TABLE RAW_PRODUCT_USE (
     idRecipe            INT NOT NULL,
-    EAN                 VARCHAR(20) NOT NULL,
+    idRawProduct        INT NOT NULL,
     amount              VARCHAR(20) NOT NULL,
     idUnit              INT,
 
     FOREIGN KEY (idRecipe)  REFERENCES RECIPE (idRecipe),
-    FOREIGN KEY (EAN) REFERENCES PRODUCT (EAN),
+    FOREIGN KEY (idRawProduct) REFERENCES RAW_PRODUCT (idRawProduct),
     FOREIGN KEY (idUnit) REFERENCES UNIT (idUnit)
 );
 
@@ -234,13 +239,13 @@ LOAD DATA LOCAL INFILE 'csv/category.csv'
     FIELDS TERMINATED BY ';'
     LINES TERMINATED BY '\n'
     IGNORE 1 LINES;
-/*
-LOAD DATA LOCAL INFILE 'csv/dish.csv'
-    INTO TABLE DISH
-    FIELDS TERMINATED BY ';'
-    LINES TERMINATED BY '\n'
-    IGNORE 1 LINES;
 
+-- LOAD DATA LOCAL INFILE 'csv/dish.csv'
+--     INTO TABLE DISH
+--     FIELDS TERMINATED BY ';'
+--     LINES TERMINATED BY '\n'
+--     IGNORE 1 LINES;
+/*
 LOAD DATA LOCAL INFILE 'csv/rate.csv'
     INTO TABLE RATE
     FIELDS TERMINATED BY ';'
