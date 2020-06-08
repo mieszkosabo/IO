@@ -214,6 +214,7 @@ public class AddRecipe extends AppCompatActivity {
             Prev.setVisibility(View.VISIBLE);
             AddPhoto.setVisibility(View.INVISIBLE);
             MakePhoto.setVisibility(View.INVISIBLE);
+            cbs = new ArrayList<CheckBox>();
 
             Callback callback = new Callback() {
                 @Override
@@ -227,7 +228,6 @@ public class AddRecipe extends AppCompatActivity {
                         String myResponse = response.body().string();
                         myResponse = myResponse.substring(1, myResponse.length() - 1);
                         Tags = new ArrayList<String>(Arrays.asList(myResponse.split(",")));
-                        cbs = new ArrayList<CheckBox>();
                         AddRecipe.this.runOnUiThread(new Runnable() {
                             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
                             @Override
