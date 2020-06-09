@@ -43,4 +43,24 @@ public class ServerCommunication {
         client.newCall(request).enqueue(cb);
     }
 
+    public void lookupName(Callback cb) {
+        Request request = new Request.Builder()
+                .url("http://10.0.2.2:8080/Recipes")
+                .build();
+        client.newCall(request).enqueue(cb);
+    }
+
+    public void lookupDes(Callback cb) {
+        Request request = new Request.Builder()
+                .url("http://10.0.2.2:8080/Recipes/Content")
+                .build();
+        client.newCall(request).enqueue(cb);
+    }
+
+    public void lookupIng(Callback cb) {
+        Request request = new Request.Builder()
+                .url("http://10.0.2.2:8080/Recipes/Products")
+                .build();
+        client.newCall(request).enqueue(cb);
+    }
 }

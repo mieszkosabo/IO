@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MyRec" />
         <activity android:name=".ServerCommunication" />
         <activity android:name=".RecipesMenu" />
         <activity android:name=".AddRecipe" />

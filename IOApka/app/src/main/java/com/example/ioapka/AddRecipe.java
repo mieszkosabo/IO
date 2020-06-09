@@ -623,7 +623,7 @@ public class AddRecipe extends AppCompatActivity {
                                 for (int i = 0; i < ingredients.length; i++) {
                                     ingredients[i] = ingredients[i].substring(1, ingredients[i].length() - 1);
                                 }
-                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddRecipe.this, android.R.layout.simple_dropdown_item_1line, ingredients);
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddRecipe.this, android.R.layout.simple_spinner_dropdown_item, ingredients);
                                 Ingredient.setThreshold(1);
                                 Ingredient.setAdapter(adapter);
                                 Ingredient.setVisibility(View.VISIBLE);

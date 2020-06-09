@@ -213,7 +213,7 @@ const handleRecipeLookup = (res, id) => {
   });
 
   const lookupRecipeinDatabase = (id) => {
-    const RecipelookupQuery = `SELECT * FROM RECIPE WHERE idRecipe = ${id}`;
+    const RecipelookupQuery = `SELECT name FROM RECIPE WHERE idRecipe = ${id}`;
 
     // pierwszy arg to kwerenda, drugi to callback
     // czyli funkcja wywoływana po zfeczowaniu danych
@@ -221,9 +221,9 @@ const handleRecipeLookup = (res, id) => {
       if (err) {
         console.log("query error");
       } else {
-        console.log(rows[0]);
+        console.log(rows[0].name);
         res.writeHead(200, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify(rows[0]));
+        res.end(JSON.stringify(rows[0].name));
       }
     });
   };
@@ -301,7 +301,7 @@ const handleRecipeCategoryLookup = (res, id) => {
   });
 
   const lookupRecipeCategoryinDatabase = (id) => {
-    const RecipelookupQuery = `SELECT category FROM CATEGORY NATURAL JOIN RECIPE_CATEGORY NATURAL JOIN RECIPE WHERE idRecipe = ${id}`;
+    const RecipelookupQuery = `SELECT name FROM RECIPE WHERE idRecipe = ${id}`;
 
     // pierwszy arg to kwerenda, drugi to callback
     // czyli funkcja wywoływana po zfeczowaniu danych
@@ -376,15 +376,15 @@ const requestListener = (req, res) => {
     handleIngredientsLookup(res);
   } else if (req.url.startsWith("/Units")) {
     handleUnitsLookup(res);
-  } else if (req.url.startsWith("/Recipes")) {
-    handleRecipeLookup(res, 1);
-  } else if (req.url.startsWith("/Recipes/Products")) {
-    handleRecipeProductsLookup(res, 1);
-  } else if (req.url.startsWith("/Recipes/Category")) {
-    handleRecipeCategoryLookup(res, 1);
   } else if (req.url.startsWith("/Recipes/Content")) {
     handleRecipeContentLookup(res, 1);
-  }
+  } else if (req.url.startsWith("/Recipes/Products")) {
+    handleRecipeProductsLookup(res, 1);
+  } else if (req.url.startsWith("/Recipes")) {
+    handleRecipeLookup(res, 1);
+  } else if (req.url.startsWith("/Recipes/Category")) {
+    handleRecipeCategoryLookup(res, 1);
+  } 
   else {
     res.end('Error, Not Found\n');
   } 

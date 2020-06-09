@@ -12,6 +12,7 @@ public class RecipesMenu extends AppCompatActivity {
 
     private ImageButton backToMain;
     private Button AddRecipe;
+    private Button MyRecipes;
     private Object MainActivity;
 
     @Override
@@ -27,6 +28,14 @@ public class RecipesMenu extends AppCompatActivity {
             }
         });
 
+        MyRecipes = findViewById(R.id.MyRecipes);
+        MyRecipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMyRecipes();
+            }
+        });
+
         AddRecipe = findViewById(R.id.AddRecipe);
         AddRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +43,11 @@ public class RecipesMenu extends AppCompatActivity {
                 openAddingRecipe();
             }
         });
+    }
+
+    public void openMyRecipes() {
+        Intent intent = new Intent(this, MyRec.class);
+        startActivity(intent);
     }
 
     public void openMainActivity() {
