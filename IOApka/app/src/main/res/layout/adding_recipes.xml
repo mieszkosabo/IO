@@ -74,6 +74,22 @@
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <Button
+        android:id="@+id/AddRec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/roboto_medium"
+        android:shadowColor="#FFFFFF"
+        android:text="Dodaj"
+        android:textColor="#FFF6CE"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
         android:id="@+id/Prev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -313,6 +329,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Popup"/>
 
+    <TextView
+        android:id="@+id/Popup2"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:visibility="invisible"
+        android:background="@drawable/button_background2"
+        android:gravity="center"
+        android:text="Należy podać czas gotowania i czas przygotowania!"
+        android:textColor="#FFF6CE"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAdding"/>
+
+    <Button
+        android:id="@+id/OK2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/roboto_medium"
+        android:shadowColor="#FFFFFF"
+        android:text="OK"
+        android:textColor="#FFF6CE"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Popup"/>
+
+    <TextView
+        android:id="@+id/Popup3"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:visibility="invisible"
+        android:background="@drawable/button_background2"
+        android:gravity="center"
+        android:text="Należy podać nazwę dania"
+        android:textColor="#FFF6CE"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAdding"/>
+
+    <Button
+        android:id="@+id/OK3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/roboto_medium"
+        android:shadowColor="#FFFFFF"
+        android:text="OK"
+        android:textColor="#FFF6CE"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Popup"/>
+
     <Button
         android:id="@+id/AddIngredient"
         android:layout_width="wrap_content"
@@ -327,5 +411,62 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Ingredients" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:hint="Nazwa dania"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAdding"
+        tools:inputType="text" />
+
+    <EditText
+        android:id="@+id/Description"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:background="@android:color/white"
+        android:capitalize="sentences"
+        android:ems="10"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="start|top"
+        android:hint="Jak przyrządzić potrawę"
+        android:inputType="textMultiLine"
+        android:shadowColor="#FFFFFF"
+        android:textColor="#000000"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAdding" />
+
+    <TextView
+        android:id="@+id/Popup4"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:visibility="invisible"
+        android:background="@drawable/button_background2"
+        android:gravity="center"
+        android:text="Przepis dodano pomyślnie!"
+        android:textColor="#FFF6CE"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarAdding"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

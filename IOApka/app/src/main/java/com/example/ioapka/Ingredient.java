@@ -10,4 +10,8 @@ public class Ingredient {
         this.Quantity = Quantity;
         this.Unit = Unit;
     }
+
+    public String getIngredient() {
+        return ingredient;
+    }
 }
