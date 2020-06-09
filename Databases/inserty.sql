@@ -1,8 +1,8 @@
 -- DODAWANIE NOWEGO PRZEPISU:
 
--- 1. Jeżeli brak oczekiwanej kategorii, to:                (idCategory autoincrementowane)
-INSERT INTO CATEGORY (category)
-VALUES ('DRUGIE SNIADANIE');
+-- -- 1. Jeżeli brak oczekiwanej kategorii, to:                (idCategory autoincrementowane)
+-- INSERT INTO CATEGORY (category)
+-- VALUES ('DRUGIE SNIADANIE');
 
 -- 2 Jeżeli nowa pozycja w DISH, to dodać powiązania z kategoriami.       (imo po stronie serwera to śmiga)
 INSERT INTO RECIPE_CATEGORY (idDish, idCategory)
