@@ -193,8 +193,144 @@ const handleEANlookup = (res, EAN) => {
   });
 }
 
+const handleRecipeLookup = (res, id) => {
+
+  // Ustalamy połączenie z mysql
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: usr,
+    password: pw,
+    database: "projectdb"
+  });
+
+  // łączymy się z bazą
+  con.connect((err) => {
+    if (err) {
+      console.log("DB ERROR!");
+    } else {
+      console.log("connection established");
+    }
+  });
+
+  const lookupRecipeinDatabase = (id) => {
+    const RecipelookupQuery = `SELECT * FROM RECIPE WHERE idRecipe = ${id}`;
+
+    // pierwszy arg to kwerenda, drugi to callback
+    // czyli funkcja wywoływana po zfeczowaniu danych
+    con.query(RecipelookupQuery, (err, rows) => {
+      if (err) {
+        console.log("query error");
+      } else {
+        console.log(rows[0]);
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify(rows[0]));
+      }
+    });
+  };
+  
+  lookupRecipeinDatabase(id);
+
+  con.end((err) => {
+    // The connection is terminated gracefully
+    // Ensures all remaining queries are executed
+    // Then sends a quit packet to the MySQL server.
+  });
+}
+
+const handleRecipeProductsLookup = (res, id) => {
+
+  // Ustalamy połączenie z mysql
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: usr,
+    password: pw,
+    database: "projectdb"
+  });
+
+  // łączymy się z bazą
+  con.connect((err) => {
+    if (err) {
+      console.log("DB ERROR!");
+    } else {
+      console.log("connection established");
+    }
+  });
+
+  const lookupRecipeProductsinDatabase = (id) => {
+    const RecipelookupQuery = `SELECT rawProduct, amount, unit FROM UNIT NATURAL JOIN RAW_PRODUCT_USE NATURAL JOIN RAW_PRODUCT WHERE idRecipe = ${id}`;
+
+    // pierwszy arg to kwerenda, drugi to callback
+    // czyli funkcja wywoływana po zfeczowaniu danych
+    con.query(RecipelookupQuery, (err, rows) => {
+      if (err) {
+        console.log("query error");
+      } else {
+        console.log(rows[0]);
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify(rows));
+      }
+    });
+  };
+  
+  lookupRecipeProductsinDatabase(id);
+
+  con.end((err) => {
+    // The connection is terminated gracefully
+    // Ensures all remaining queries are executed
+    // Then sends a quit packet to the MySQL server.
+  });
+}
+
+const handleRecipeCategoryLookup = (res, id) => {
+
+  // Ustalamy połączenie z mysql
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: usr,
+    password: pw,
+    database: "projectdb"
+  });
+
+  // łączymy się z bazą
+  con.connect((err) => {
+    if (err) {
+      console.log("DB ERROR!");
+    } else {
+      console.log("connection established");
+    }
+  });
+
+  const lookupRecipeCategoryinDatabase = (id) => {
+    const RecipelookupQuery = `SELECT category FROM CATEGORY NATURAL JOIN RECIPE_CATEGORY NATURAL JOIN RECIPE WHERE idRecipe = ${id}`;
+
+    // pierwszy arg to kwerenda, drugi to callback
+    // czyli funkcja wywoływana po zfeczowaniu danych
+    con.query(RecipelookupQuery, (err, rows) => {
+      if (err) {
+        console.log("query error");
+      } else {
+        console.log(rows[0]);
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify(rows));
+      }
+    });
+  };
+  
+  lookupRecipeCategoryinDatabase(id);
+
+  con.end((err) => {
+    // The connection is terminated gracefully
+    // Ensures all remaining queries are executed
+    // Then sends a quit packet to the MySQL server.
+  });
+}
+
 const requestListener = (req, res) => {
-  if (req.url.startsWith("/lookupEAN=")) {
+  if (req.method === 'POST') {
+    console.log("post")
+    res.end();
+  }
+  else if (req.url.startsWith("/lookupEAN=")) {
     const EAN = req.url.substr(req.url.indexOf('=') + 1, 13);
     console.log(EAN);
     console.log(EAN.length);
@@ -209,7 +345,14 @@ const requestListener = (req, res) => {
     handleIngredientsLookup(res);
   } else if (req.url.startsWith("/Units")) {
     handleUnitsLookup(res);
+  } else if (req.url.startsWith("/Recipes")) {
+    handleRecipeLookup(res, 1);
+  } else if (req.url.startsWith("/Recipes/Products")) {
+    handleRecipeProductsLookup(res, 1);
+  } else if (req.url.startsWith("/Recipes/Category")) {
+    handleRecipeCategoryLookup(res, 1);
   }
+  
   else {
     res.end('Error, Not Found\n');
   } 
