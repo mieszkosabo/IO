@@ -135,7 +135,6 @@ public class MyRec extends AppCompatActivity {
                     ArrayList<String> Ingr = new ArrayList<String>(Arrays.asList(myResponse.split("[}][,][{]")));
                     Ingr.set(0, Ingr.get(0) + "}");
                     Ingr.set(1, "{" + Ingr.get(1));
-                    Popup2.setText(Ingr.get(1));
 
                     try {
                         for (int i = 0; i < Ingr.size(); i++) {
