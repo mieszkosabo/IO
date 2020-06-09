@@ -325,6 +325,37 @@ const handleRecipeCategoryLookup = (res, id) => {
   });
 }
 
+const handleRecipeContentLookup = (res, id) => {
+
+  // Ustalamy połączenie z mysql
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: usr,
+    password: pw,
+    database: "projectdb"
+  });
+
+  const text = fs.readFileSync('recipes/1.txt').toString()
+  // łączymy się z bazą
+  con.connect((err) => {
+    if (err) {
+      console.log("DB ERROR!");
+    } else {
+      console.log("connection established");
+    }
+  });
+
+  res.end(text);
+
+  con.end((err) => {
+    // The connection is terminated gracefully
+    // Ensures all remaining queries are executed
+    // Then sends a quit packet to the MySQL server.
+  });
+}
+
+
+
 const requestListener = (req, res) => {
   if (req.method === 'POST') {
     console.log("post")
@@ -351,8 +382,9 @@ const requestListener = (req, res) => {
     handleRecipeProductsLookup(res, 1);
   } else if (req.url.startsWith("/Recipes/Category")) {
     handleRecipeCategoryLookup(res, 1);
+  } else if (req.url.startsWith("/Recipes/Content")) {
+    handleRecipeContentLookup(res, 1);
   }
-  
   else {
     res.end('Error, Not Found\n');
   } 
